@@ -25,8 +25,7 @@ const InterviewerSlotPage = () => {
         setOpenPopUp(false);
     };
 
-    const reducerSlots = useSelector((state) => state.interviewSlots);
-    
+    const interviewSlots = useSelector((state) => state.interviewSlots);
     const user = JSON.parse(localStorage.getItem('user'));
 
     const [openSnack, setOpenSnack] = React.useState(false);
@@ -82,7 +81,7 @@ const InterviewerSlotPage = () => {
                     <Typography variant="h2">
                         <b>{user.name.split(' ')[0]}</b>'s Interview Slots
                     </Typography>
-                    <WeekCalendar currentDate={currentDate} schedulerData={reducerSlots} />
+                    <WeekCalendar currentDate={currentDate} schedulerData={interviewSlots} />
                     <Box sx={{my:2}}>
                         <Button onClick={handleOpenPopUp} className='success-btn'>Create Slots</Button>
                     </Box>
