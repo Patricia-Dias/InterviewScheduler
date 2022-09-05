@@ -22,6 +22,7 @@ import com.example.interviewscheduler.models.Interviewer;
 @Testcontainers
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class InterviewerRepositoryTest {
+    
     @Container
 	public static PostgreSQLContainer container = new PostgreSQLContainer("postgres:12")
 		.withUsername("xgeeks")
