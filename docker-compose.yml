@@ -33,15 +33,10 @@ services:
     container_name: postgresdbscheduler
     hostname: postgresdbscheduler
     restart: unless-stopped
-      #ports:
-      #- 27117:27017
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=scheduler
-
-    # volumes:
-    #   - schedulerdb:/var/lib/postgresql/schedulerData
     networks:
       backend-scheduler:
         ipv4_address: 172.20.202.2
@@ -49,7 +44,7 @@ services:
   # React App
   scheduler-web:
     build:
-      context:  interview-scheduler-app  # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+      context:  interview-scheduler-app
       dockerfile: Dockerfile
     container_name: schedulerWeb
     hostname: schedulerWeb
