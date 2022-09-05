@@ -8,15 +8,20 @@ import axios from '../../api/axios';
 import { INTERVIEW_SLOTS_BY_CANDIDATE } from '../../api/APIconstants';
 import { addHours } from '../../app/AppFunctions';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import slotsReducer, { APPEND_SLOT, INSERT_ITEMS } from '../../features/redux/interview-slots';
 
 const MyInterviewPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const savedUser = JSON.parse(localStorage.getItem('user'));
 
   const [openSnack, setOpenSnack] = React.useState(false);
   const [severity, setSeverity] = React.useState('info');
   const [message, setMessage] = React.useState('');
-  const [interviewSlots, setInterviewSlots] = React.useState([]);
+//   const [interviewSlots, setInterviewSlots] = React.useState([]);
+  const interviewSlot = useSelector((state) => state.interviewSlots);
+  const [loadedData, setLoadedData] = React.useState(false);
 
   const showAlert = (message, severity) => {
       setMessage(message);
@@ -33,34 +38,40 @@ const MyInterviewPage = () => {
           .then(
             res => {
                 if (res.status === 200){
-                    const data = res.data;
-                    if(data){
-                        setInterviewSlots(
-                            [{
-                                startDate: data.time,
-                                endDate: addHours(1, new Date(data.time)),
-                                title: `Interview with ${data.interviewer.name}`
-                            }]
-                        )
+                    const slot = res.data;
+                    if(slot){
+                        dispatch(slotsReducer({type: APPEND_SLOT, item:
+                                {
+                                    startDate: slot.time,
+                                    endDate: addHours(1, new Date(slot.time)),
+                                    title: slot.candidate === null ? '' : `Interview with ${slot.candidate.name}`
+                                },
+                        }));
                         return;
+                    }else{
+                        showAlert('You have no Slot assigned', SNACK_SEVERITY.info);
                     }
                 }
             }
           ).catch(err =>{
+            console.log(err);
             const status = err.response.status;
             if (status === 0){
                 showAlert('No server response', SNACK_SEVERITY.error);
             }else if(status === 404){
-                showAlert('You have no Slot assigned', SNACK_SEVERITY.info);
+                showAlert("Could not find Candidate", SNACK_SEVERITY.info);
             }else {
                 showAlert('Unable to get Your Interview Slot', SNACK_SEVERITY.info);
             }
           })
-  }, []);
+          setLoadedData(true);
+  }, [dispatch]);
 
     const handleCloseSnack = () => {
         setOpenSnack(false);
     };
+
+    console.log(interviewSlot.length>0 ? (interviewSlot[0].startDate) : new Date());
 
     
 
@@ -73,11 +84,13 @@ const MyInterviewPage = () => {
                     Scheduled Interview
                 </Typography>
                 <Box>
-                    {/* if there is an interview slot, start calendar date by its date*/}
-                    <WeekCalendar currentDate={interviewSlots.length>0 ? (interviewSlots[0].startDate) : new Date()} schedulerData={interviewSlots}/>                  
+                    {loadedData ? 
+                        // if there is an interview slot, start calendar date by its date
+                        <WeekCalendar currentDate={interviewSlot.length>0 ? (interviewSlot[0].startDate) : new Date()} schedulerData={interviewSlot}/>
+                        : null}          
                 </Box>
                 {
-                    interviewSlots.length===0 ? 
+                    interviewSlot.length===0 ? 
                     <Button sx={{my:2}} onClick={()=>{handleClick();}} className="success-btn"> Schedule Interview</Button>
                     : null
                 }

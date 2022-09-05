@@ -20,6 +20,10 @@ function insertItems(array, action) {
   return newArray
 }
 
+function removeItems() {
+  this.state.interviewSlots = [];
+}
+
 
 export default function slotsReducer(state = initialState, action = {}) {
   switch (action.type) {
@@ -37,6 +41,7 @@ export default function slotsReducer(state = initialState, action = {}) {
       interviewSlots: insertItems(state.interviewSlots, action)
     };
   case REMOVE_SLOTS:
+    console.log(state.interviewSlots);
     return {
       ...state,
       interviewSlots: []

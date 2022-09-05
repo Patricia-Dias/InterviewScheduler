@@ -79,7 +79,7 @@ curl -X 'POST' \
 curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
   -H 'Accept: */*' -H 'Content-Type: application/json' \
   -d '{
-  "time": "2022-09-01T10:00:00",
+  "time": "2022-09-07T10:00:00",
   "interviewer": {
     "name": "Olivia Rodrigo",
     "email": "olivia@work.com"
@@ -89,7 +89,7 @@ curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
 curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
   -H 'Accept: */*' -H 'Content-Type: application/json' \
   -d '{
-  "time": "2022-09-01T11:00:00",
+  "time": "2022-09-07T11:00:00",
   "interviewer": {
     "name": "Olivia Rodrigo",
     "email": "olivia@work.com"
@@ -99,7 +99,7 @@ curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
 curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
   -H 'Accept: */*' -H 'Content-Type: application/json' \
   -d '{
-  "time": "2022-09-01T11:00:00",
+  "time": "2022-09-07T11:00:00",
   "interviewer": {
     "name": "Ariana Grande",
     "email": "ariana@work.com"
@@ -109,7 +109,7 @@ curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
 curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
   -H 'Accept: */*' -H 'Content-Type: application/json' \
   -d '{
-  "time": "2022-09-01T12:00:00",
+  "time": "2022-09-07T12:00:00",
   "interviewer": {
     "name": "Ariana Grande",
     "email": "ariana@work.com"
@@ -119,7 +119,7 @@ curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
 curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
   -H 'Accept: */*' -H 'Content-Type: application/json' \
   -d '{
-  "time": "2022-09-01T10:00:00",
+  "time": "2022-09-07T10:00:00",
   "interviewer": {
     "name": "Ariana Grande",
     "email": "ariana@work.com"
@@ -129,7 +129,7 @@ curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
 curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
   -H 'Accept: */*' -H 'Content-Type: application/json' \
   -d '{
-  "time": "2022-09-01T11:00:00",
+  "time": "2022-09-07T11:00:00",
   "interviewer": {
     "name": "Rafaela Dias",
     "email": "rafaela@work.com"
@@ -139,7 +139,7 @@ curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
 curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
   -H 'Accept: */*' -H 'Content-Type: application/json' \
   -d '{
-  "time": "2022-09-02T12:00:00",
+  "time": "2022-09-15T12:00:00",
   "interviewer": {
     "name": "Rafaela Dias",
     "email": "rafaela@work.com"
@@ -149,7 +149,7 @@ curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
 curl -X 'POST' 'http://localhost:8083/api/scheduler/interviewslot' \
   -H 'Accept: */*' -H 'Content-Type: application/json' \
   -d '{
-  "time": "2022-09-02T13:00:00",
+  "time": "2022-09-15T13:00:00",
   "interviewer": {
     "name": "Alfredo Martins",
     "email": "alfredo@work.com"

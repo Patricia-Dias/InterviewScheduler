@@ -26,7 +26,7 @@ const InterviewerSlotPage = () => {
     };
 
     const reducerSlots = useSelector((state) => state.interviewSlots);
-    // console.log("HEREEEEE\t"+useSelector((state) => state.interviewSlots));
+    
     const user = JSON.parse(localStorage.getItem('user'));
 
     const [openSnack, setOpenSnack] = React.useState(false);
