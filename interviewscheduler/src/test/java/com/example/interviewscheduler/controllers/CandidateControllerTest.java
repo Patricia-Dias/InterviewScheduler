@@ -119,7 +119,7 @@ class CandidateControllerTest {
     }
 
     @Test
-    void testWhenCreateExistingCandidate_thenReturnNotFound() throws DuplicatedUserException{
+    void testWhenLoginNonExistingCandidate_thenReturnNotFound() throws DuplicatedUserException{
         when(candidateService.getCandidateByEmail(candidate.getEmail())).thenReturn(null);
 
         given()
