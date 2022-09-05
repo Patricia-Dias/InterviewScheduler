@@ -1,0 +1,11 @@
+{
+  "short_name": "Scheduler App",
+  "name": "Interview Scheduler",
+  "icons": [
+    
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

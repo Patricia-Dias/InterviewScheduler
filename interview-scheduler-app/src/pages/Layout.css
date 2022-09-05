@@ -1,0 +1,20 @@
+.centered {
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.header {
+    margin-top: 40px;
+}
+
+.success-btn{
+    background-color: #45523e !important;
+    color: #f5ece5 !important;
+}
+
+.dismiss-btn{
+    background-color: #ad5d50 !important;
+    color: #f5ece5 !important;
+}

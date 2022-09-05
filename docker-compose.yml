@@ -1,0 +1,67 @@
+version: '3.8'
+
+# Define services
+services:
+  # App backend service
+  scheduler:
+    # Configuration for building the docker image for the backend service
+    container_name: schedulerSpring
+    hostname: schedulerSpring
+    
+    build:
+      context: interviewscheduler  # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 2
+        window: 120s
+    depends_on:
+      - postgres-db-scheduler # This service depends on mysql. Start that first
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      backend-scheduler:
+        ipv4_address: 172.20.202.10
+
+
+  # Database Service (PostGres)
+  postgres-db-scheduler:
+    image: postgres:11.12
+
+    container_name: postgresdbscheduler
+    hostname: postgresdbscheduler
+    restart: unless-stopped
+      #ports:
+      #- 27117:27017
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=scheduler
+
+    # volumes:
+    #   - schedulerdb:/var/lib/postgresql/schedulerData
+    networks:
+      backend-scheduler:
+        ipv4_address: 172.20.202.2
+  
+  # React App
+  scheduler-web:
+    build:
+      context:  interview-scheduler-app  # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+      dockerfile: Dockerfile
+    container_name: schedulerWeb
+    hostname: schedulerWeb
+    restart: unless-stopped
+    ports:
+      - 3000:80
+    networks:
+      backend-scheduler:
+        ipv4_address: 172.20.202.3
+
+networks:
+  backend-scheduler:
+    ipam:
+      config:
+        - subnet: "172.20.202.0/24"
