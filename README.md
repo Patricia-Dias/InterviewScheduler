@@ -17,7 +17,7 @@ Runs the server and the database.\
 Open [http://localhost:8083/api/scheduler](http://localhost:8083/api/scheduler) to view it in your browser.\
 To check the API endpoints go to [Swagger](http://localhost:8083/swagger-ui/index.html#/).\
 It also launches the React application.\
-Open [Interview Scheduler](http://localhost:3000) to browse the applicatio.
+Open [Interview Scheduler](http://localhost:3000) to browse the application.
 
 ### 3. `chmod u+x loadDatabase.sh`
 
